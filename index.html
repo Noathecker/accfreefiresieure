@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Free Fire VIP Pro</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:linear-gradient(-45deg,#0a0024,#140043,#1a004d,#000);background-size:400% 400%;animation:gradientBG 15s ease infinite;color:#fff;overflow-x:hidden;}
+@keyframes gradientBG{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+header{text-align:center;padding:20px;font-size:2.5rem;font-weight:600;text-shadow:0 0 15px #7f5af0;}
+nav{display:flex;justify-content:center;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:50px;margin:20px auto;width:95%;max-width:1100px;box-shadow:0 0 20px #7f5af0;flex-wrap:wrap;}
+nav button{flex:1;padding:18px;background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;transition:all 0.3s;}
+nav button:hover,nav button.active{background:rgba(127,90,240,0.2);box-shadow:inset 0 0 15px #7f5af0;}
+.container{width:95%;max-width:1100px;margin:0 auto;padding:25px;border-radius:20px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(127,90,240,0.3);min-height:500px;position:relative;}
+.tab{display:none;opacity:0;transform:translateY(20px);transition:all 0.5s;}
+.tab.active{display:block;opacity:1;transform:translateY(0);}
+.card{background:rgba(255,255,255,0.08);padding:20px;border-radius:15px;margin-bottom:20px;box-shadow:0 0 15px rgba(127,90,240,0.2);transition:0.3s;text-align:center;}
+.card:hover{box-shadow:0 0 20px rgba(127,90,240,0.5);transform:translateY(-5px);}
+.card img{width:100%;max-width:300px;height:250px;object-fit:cover;border-radius:10px;margin-bottom:10px;background:#111;}
+.btn{display:inline-block;padding:12px 25px;border:none;border-radius:30px;background:linear-gradient(90deg,#7f5af0,#5f3dc4);color:#fff;cursor:pointer;font-size:1.1rem;transition:0.3s;text-decoration:none;}
+.btn:hover{background:linear-gradient(90deg,#5f3dc4,#7f5af0);box-shadow:0 0 20px #7f5af0;}
+#auth-container{text-align:center;padding:20px;}
+#auth-container input{width:80%;margin:10px 0;padding:12px;border:none;border-radius:20px;text-align:center;outline:none;font-size:1rem;}
+.admin-form input{width:100%;padding:12px;margin:8px 0;border:none;border-radius:20px;text-align:center;}
+h2{font-size:2rem;margin-bottom:20px;}
+.logout-btn{position:fixed;top:15px;right:15px;background:#ff4f5a;border:none;color:white;padding:10px 20px;border-radius:20px;cursor:pointer;font-size:1rem;}
+.logout-btn:hover{background:#ff6f7a;}
+</style>
+</head>
+<body>
+<header>Shop Free Fire VIP Pro</header>
+<div id="auth-container">
+  <h2>🔐 Đăng nhập / Đăng ký</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Mật khẩu">
+  <div>
+    <button class="btn" onclick="register()">Đăng ký</button>
+    <button class="btn" onclick="login()">Đăng nhập</button>
+  </div>
+</div>
+<button id="logoutBtn" class="logout-btn" style="display:none;" onclick="logout()">Đăng xuất</button>
+<div id="shop-container" style="display:none;">
+  <nav id="mainNav">
+    <button class="active" onclick="showTab('accTab',this)">Mua Acc</button>
+    <button onclick="showTab('cartTab',this)">Giỏ hàng</button>
+    <button onclick="showTab('historyTab',this)">Lịch sử</button>
+    <button onclick="showTab('xuTab',this)">Số Xu</button>
+  </nav>
+  <div class="container">
+    <div id="accTab" class="tab active">
+      <h2>🧑‍🚀 Danh sách Acc</h2>
+      <div id="acc-list"></div>
+    </div>
+    <div id="cartTab" class="tab">
+      <h2>🛒 Giỏ hàng</h2>
+      <div id="cart-list"></div>
+    </div>
+    <div id="historyTab" class="tab">
+      <h2>📜 Lịch sử mua hàng</h2>
+      <div id="history-list"></div>
+    </div>
+    <div id="xuTab" class="tab">
+      <h2>🪙 Số Xu</h2>
+      <p id="xu-display">Đang tải...</p>
+    </div>
+    <div id="adminTab" class="tab" style="display:none;">
+      <h2>👑 Admin</h2>
+      <div class="admin-form">
+        <input type="text" id="accId" placeholder="ID acc (vd: acc1)">
+        <input type="text" id="accImg" placeholder="URL ảnh acc">
+        <div style="text-align:center;margin:10px 0;">
+          <img id="accPreview" src="" alt="Xem trước ảnh" style="display:none;max-width:250px;max-height:250px;border-radius:15px;object-fit:cover;box-shadow:0 0 10px #7f5af0;">
+        </div>
+        <h4>🖼️ Thêm tối đa 10 ảnh thông tin acc</h4><input type='text' id='accImgInfo1' placeholder='URL ảnh thông tin 1'><input type='text' id='accImgInfo2' placeholder='URL ảnh thông tin 2'><input type='text' id='accImgInfo3' placeholder='URL ảnh thông tin 3'><input type='text' id='accImgInfo4' placeholder='URL ảnh thông tin 4'><input type='text' id='accImgInfo5' placeholder='URL ảnh thông tin 5'><input type='text' id='accImgInfo6' placeholder='URL ảnh thông tin 6'><input type='text' id='accImgInfo7' placeholder='URL ảnh thông tin 7'><input type='text' id='accImgInfo8' placeholder='URL ảnh thông tin 8'><input type='text' id='accImgInfo9' placeholder='URL ảnh thông tin 9'><input type='text' id='accImgInfo10' placeholder='URL ảnh thông tin 10'><input type="text" id="accDesc" placeholder="Mô tả acc">
+        <input type="text" id="accRank" placeholder="Rank">
+        <input type="text" id="accGun" placeholder="Skin súng">
+        <input type="text" id="accSkin" placeholder="Skin nhân vật">
+        <input type="number" id="accPrice" placeholder="Giá xu">
+        <button class="btn" onclick="addAccount()">📤 Thêm ACC</button>
+        <hr style="margin:20px 0;border-color:#7f5af0;">
+        <h3>🪙 Quản lý Xu người dùng</h3>
+        <input type="email" id="targetEmail" placeholder="Email người dùng">
+        <input type="number" id="xuAmount" placeholder="Số xu">
+        <button class="btn" onclick="addXu()">➕ Cộng xu</button>
+        <button class="btn" onclick="subXu()">➖ Trừ xu</button>
+        <p id="admin-status"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {getDatabase,ref,set,get,remove,onValue,push,update} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+const firebaseConfig={apiKey:"AIzaSyC8lJ6cW2CBRopaGG_IxaII99SinfscTNk",authDomain:"shop-acc-f37a8.firebaseapp.com",databaseURL:"https://shop-acc-f37a8-default-rtdb.firebaseio.com/",projectId:"shop-acc-f37a8",storageBucket:"shop-acc-f37a8.firebasestorage.app",messagingSenderId:"664910816617",appId:"1:664910816617:web:18df39b55e3e34316609f8"};
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getDatabase(app);
+let currentUID=null;let adminBtn=null;
+window.register=async()=>{await createUserWithEmailAndPassword(auth,email.value,password.value);alert("✅ Đăng ký thành công");};
+window.login=async()=>{await signInWithEmailAndPassword(auth,email.value,password.value);alert("✅ Đăng nhập thành công");};
+window.logout=async()=>{await signOut(auth);alert("🚪 Đã đăng xuất!");};
+onAuthStateChanged(auth,async(user)=>{const adminTab=document.getElementById('adminTab');const nav=document.getElementById('mainNav');if(adminBtn){nav.removeChild(adminBtn);adminBtn=null;}adminTab.style.display="none";if(user){currentUID=user.uid;document.getElementById('auth-container').style.display="none";document.getElementById('shop-container').style.display="block";document.getElementById('logoutBtn').style.display="block";if(user.email==="danhnekk123@gmail.com"){adminBtn=document.createElement('button');adminBtn.textContent="Admin";adminBtn.onclick=()=>showTab('adminTab',adminBtn);nav.appendChild(adminBtn);adminTab.style.display="block";}const userRef=ref(db,"users/"+user.uid);const snap=await get(userRef);if(!snap.exists()) set(userRef,{email:user.email,xu:0});loadXu();loadAccounts();loadCart();loadHistory();}else{document.getElementById('auth-container').style.display="block";document.getElementById('shop-container').style.display="none";document.getElementById('logoutBtn').style.display="none";}});
+function loadXu(){onValue(ref(db,"users/"+currentUID+"/xu"),s=>{document.getElementById('xu-display').textContent="💰 Xu hiện có: "+(s.val()||0);});}
+function loadAccounts(){
+  onValue(ref(db,"accounts"),snap=>{
+    const accList=document.getElementById('acc-list');
+    accList.innerHTML="";
+    snap.forEach(c=>{
+      const a=c.val();
+      accList.innerHTML+=`
+        <div class="card">
+          <img src="${a.img}">
+          <h3>${a.desc}</h3>
+          <p>🏆 ${a.rank}</p>
+          <p>🔫 ${a.gun}</p>
+          <p>🧥 ${a.skin}</p>
+          <p>💰 Giá: ${a.price} xu</p>
+          <button class='btn' onclick="addToCart('${c.key}')">🛒 Thêm giỏ hàng</button>
+          <button class='btn' onclick="viewInfo('${c.key}')">👁 Xem thông tin</button>
+        </div>`;
+    });
+  });
+}
+window.addToCart=async(id)=>{const accSnap=await get(ref(db,"accounts/"+id));if(!accSnap.exists())return;await set(ref(db,"cart/"+currentUID+"/"+id),accSnap.val());alert("✅ Đã thêm vào giỏ hàng");};
+function loadCart(){
+  onValue(ref(db,"cart/"+currentUID),snap=>{
+    const cartList=document.getElementById('cart-list');
+    cartList.innerHTML="";
+    snap.forEach(c=>{
+      const a=c.val();
+      cartList.innerHTML+=`
+        <div class="card">
+          <img src="${a.img}">
+          <h3>${a.desc}</h3>
+          <p>💰 ${a.price} xu</p>
+          <button class='btn' onclick="buyAcc('${c.key}')">💳 Mua ngay</button>
+          <button class='btn' onclick="removeFromCart('${c.key}')">🗑️ Xóa khỏi giỏ</button>
+        </div>`;
+    });
+  });
+}
+window.buyAcc=async(id)=>{if(!confirm("Xác nhận mua acc này?"))return;const accSnap=await get(ref(db,"cart/"+currentUID+"/"+id));if(!accSnap.exists())return alert("❌ Acc không tồn tại!");const acc=accSnap.val();const xuSnap=await get(ref(db,"users/"+currentUID+"/xu"));let xu=xuSnap.val()||0;if(xu<acc.price){alert("❌ Không đủ xu!");return;}xu-=acc.price;await set(ref(db,"users/"+currentUID+"/xu"),xu);await set(push(ref(db,"history/"+currentUID)),{accId:id,desc:acc.desc,price:acc.price,time:new Date().toLocaleString()});await remove(ref(db,"accounts/"+id));await remove(ref(db,"cart/"+currentUID+"/"+id));alert("✅ Mua thành công!");};
+function loadHistory(){onValue(ref(db,"history/"+currentUID),snap=>{const historyList=document.getElementById('history-list');historyList.innerHTML="";snap.forEach(c=>{const h=c.val();historyList.innerHTML+=`<div class="card"><h3>${h.desc}</h3><p>💰 Giá: ${h.price} xu</p><p>📅 Thời gian: ${h.time}</p></div>`;});});}
+window.addAccount=async()=>{
+  const id=document.getElementById('accId').value.trim();
+  if(!id)return alert("❌ Nhập ID");
+  const accData={
+    img:document.getElementById('accImg').value,
+    desc:document.getElementById('accDesc').value,
+    rank:document.getElementById('accRank').value,
+    gun:document.getElementById('accGun').value,
+    skin:document.getElementById('accSkin').value,
+    price:parseInt(document.getElementById('accPrice').value)
+  };
+  for(let i=1;i<=10;i++){
+    const val=document.getElementById('accImgInfo'+i)?.value.trim();
+    if(val) accData['imgInfo'+i]=val;
+  }
+  await set(ref(db,"accounts/"+id),accData);
+  document.getElementById('admin-status').textContent="✅ Thêm acc thành công!";
+};
+window.addXu=async()=>{const email=document.getElementById('targetEmail').value.trim();const amount=parseInt(document.getElementById('xuAmount').value);if(!email||!amount)return alert("❌ Nhập email và số xu!");const usersRef=ref(db,"users");const snap=await get(usersRef);let found=false;snap.forEach(u=>{const data=u.val();if(data.email===email){found=true;const newXu=(data.xu||0)+amount;update(ref(db,"users/"+u.key),{xu:newXu});alert("✅ Đã cộng "+amount+" xu cho "+email);}});if(!found)alert("❌ Không tìm thấy người dùng!");};
+window.subXu=async()=>{const email=document.getElementById('targetEmail').value.trim();const amount=parseInt(document.getElementById('xuAmount').value);if(!email||!amount)return alert("❌ Nhập email và số xu!");const usersRef=ref(db,"users");const snap=await get(usersRef);let found=false;snap.forEach(u=>{const data=u.val();if(data.email===email){found=true;const newXu=Math.max(0,(data.xu||0)-amount);update(ref(db,"users/"+u.key),{xu:newXu});alert("✅ Đã trừ "+amount+" xu từ "+email);}});if(!found)alert("❌ Không tìm thấy người dùng!");};
+window.showTab=(id,el)=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));el.classList.add('active');};
+// Hiển thị preview ảnh tự động
+const imgInput=document.getElementById('accImg');const preview=document.getElementById('accPreview');imgInput.addEventListener('input',()=>{const url=imgInput.value.trim();if(url){preview.src=url;preview.style.display='block';}else{preview.style.display='none';}});
+
+// Xóa acc khỏi giỏ hàng
+window.removeFromCart=async(id)=>{
+  if(!confirm("❌ Xóa acc này khỏi giỏ hàng?"))return;
+  await remove(ref(db,"cart/"+currentUID+"/"+id));
+  alert("🗑️ Đã xóa acc khỏi giỏ hàng!");
+};
+
+// Xem thông tin acc (hiển thị popup ảnh)
+window.viewInfo=async(id)=>{
+  const accSnap=await get(ref(db,"accounts/"+id));
+  if(!accSnap.exists())return alert("❌ Không có thông tin!");
+  const acc=accSnap.val();
+  const popup=document.getElementById("infoPopup");
+  const infoImages=document.getElementById("infoImages");
+  infoImages.innerHTML="";
+  for(let i=1;i<=10;i++){
+    const imgUrl=acc["imgInfo"+i];
+    if(imgUrl){
+      const img=document.createElement("img");
+      img.src=imgUrl;
+      img.style="max-width:300px;margin:10px;border-radius:10px;box-shadow:0 0 10px #7f5af0;";
+      infoImages.appendChild(img);
+    }
+  }
+  popup.style.display="flex";
+};
+window.closeInfo=()=>{document.getElementById("infoPopup").style.display="none";};
+
+</script>
+
+<!-- Popup xem ảnh thông tin acc -->
+<div id="infoPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
+  <div style="background:#111;padding:20px;border-radius:15px;max-width:90%;max-height:90%;overflow:auto;position:relative;text-align:center;">
+    <button onclick="closeInfo()" style="position:absolute;top:10px;right:15px;background:red;border:none;color:#fff;padding:5px 10px;border-radius:10px;cursor:pointer;">✖</button>
+    <div id="infoImages"></div>
+  </div>
+</div>
+
+</body>
+</html>
