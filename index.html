@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Shop Free Fire VIP Pro</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -19,7 +20,7 @@ nav button:hover,nav button.active{background:#ff6600;color:#fff;box-shadow:0 0 
 .card{background:#222;border:2px solid #ffcc00;padding:15px;border-radius:10px;margin-bottom:20px;box-shadow:0 0 10px rgba(255,204,0,0.3);transition:0.3s;text-align:center;}
 .card:hover{box-shadow:0 0 20px rgba(127,90,240,0.5);transform:translateY(-5px);}
 .card img{width:100%;max-width:300px;height:250px;object-fit:cover;border-radius:10px;margin-bottom:10px;background:#111;}
-..btn{display:inline-block;padding:10px 20px;border:none;border-radius:10px;background:#ffcc00;color:#000;font-weight:600;cursor:pointer;font-size:1rem;transition:0.3s;text-decoration:none;}
+.btn{display:inline-block;padding:10px 20px;border:none;border-radius:10px;background:#ffcc00;color:#000;font-weight:600;cursor:pointer;font-size:1rem;transition:0.3s;text-decoration:none;}
 .btn:hover{background:#ff6600;color:#fff;box-shadow:0 0 15px #ffcc00;}
 #auth-container{text-align:center;padding:20px;}
 #auth-container input{width:80%;margin:10px 0;padding:12px;border:none;border-radius:20px;text-align:center;outline:none;font-size:1rem;}
@@ -32,68 +33,77 @@ h2{font-size:2rem;margin-bottom:20px;}
 <body>
 <header>Shop Free Fire VIP Pro</header>
 <div id="auth-container">
-  <h2>🔐 Đăng nhập / Đăng ký</h2>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Mật khẩu">
-  <div>
-    <button class="btn" onclick="register()">Đăng ký</button>
-    <button class="btn" onclick="login()">Đăng nhập</button>
-  </div>
+<h2>🔐 Đăng nhập / Đăng ký</h2>
+<input id="email" placeholder="Email" type="email"/>
+<input id="password" placeholder="Mật khẩu" type="password"/>
+<div>
+<button class="btn" onclick="register()">Đăng ký</button>
+<button class="btn" onclick="login()">Đăng nhập</button>
+</div>
 </div>
 <div id="shop-container" style="display:none;">
-  <div id="menuToggle" style="position:fixed;top:15px;left:15px;z-index:999;">
-  <button onclick="toggleMenu()" style="background:#ffcc00;color:#000;border:none;border-radius:5px;padding:8px 12px;font-weight:700;font-size:1.2rem;cursor:pointer;">☰</button>
+<div id="menuToggle" style="position:fixed;top:15px;left:15px;z-index:999;">
+<button onclick="toggleMenu()" style="background:#ffcc00;color:#000;border:none;border-radius:5px;padding:8px 12px;font-weight:700;font-size:1.2rem;cursor:pointer;">☰</button>
 </div>
 <nav id="mainNav" style="display:none;flex-direction:column;position:fixed;top:60px;left:10px;background:rgba(0,0,0,0.9);padding:10px;border-radius:10px;z-index:998;width:180px;">
-
-    <button class="active" onclick="showTab('accTab',this)">Mua Acc</button>
-    <button onclick="showTab('cartTab',this)">Giỏ hàng</button>
-    <button onclick="showTab('historyTab',this)">Lịch sử</button>
-    <button onclick="showTab('xuTab',this)">Số Xu</button>
-    <button onclick="logout()" class="btn" style="margin-top:10px;background:#ff3300;color:#fff;">🚪 Đăng xuất</button>
+<button class="active" onclick="showTab('accTab',this)">Mua Acc</button><button onclick="showTab('kcTab',this)">Mua KC</button>
+<button onclick="showTab('cartTab',this)">Giỏ hàng</button>
+<button onclick="showTab('historyTab',this)">Lịch sử</button>
+<button onclick="showTab('xuTab',this)">Số Xu</button>
+<button class="btn" onclick="logout()" style="margin-top:10px;background:#ff3300;color:#fff;">🚪 Đăng xuất</button>
 </nav>
-  <div class="container">
-    <div id="accTab" class="tab active">
-      <h2>🧑‍🚀 Danh sách Acc</h2>
-      <div id="acc-list"></div>
-    </div>
-    <div id="cartTab" class="tab">
-      <h2>🛒 Giỏ hàng</h2>
-      <div id="cart-list"></div>
-    </div>
-    <div id="historyTab" class="tab">
-      <h2>📜 Lịch sử mua hàng</h2>
-      <div id="history-list"></div>
-    </div>
-    <div id="xuTab" class="tab">
-      <h2>🪙 Số Xu</h2>
-      <p id="xu-display">Đang tải...</p>
-      <button class="btn" onclick="topUp()">💸 Nạp Xu</button>
-    </div>
-    <div id="adminTab" class="tab" style="display:none;">
-      <h2>👑 Admin</h2>
-      <div class="admin-form">
-        <input type="text" id="accId" placeholder="ID acc (vd: acc1)">
-        <input type="text" id="accImg" placeholder="URL ảnh acc">
-        <div style="text-align:center;margin:10px 0;">
-          <img id="accPreview" src="" alt="Xem trước ảnh" style="display:none;max-width:250px;max-height:250px;border-radius:15px;object-fit:cover;box-shadow:0 0 10px #7f5af0;">
-        </div>
-        <h4>🖼️ Thêm tối đa 10 ảnh thông tin acc</h4><input type='text' id='accImgInfo1' placeholder='URL ảnh thông tin 1'><input type='text' id='accImgInfo2' placeholder='URL ảnh thông tin 2'><input type='text' id='accImgInfo3' placeholder='URL ảnh thông tin 3'><input type='text' id='accImgInfo4' placeholder='URL ảnh thông tin 4'><input type='text' id='accImgInfo5' placeholder='URL ảnh thông tin 5'><input type='text' id='accImgInfo6' placeholder='URL ảnh thông tin 6'><input type='text' id='accImgInfo7' placeholder='URL ảnh thông tin 7'><input type='text' id='accImgInfo8' placeholder='URL ảnh thông tin 8'><input type='text' id='accImgInfo9' placeholder='URL ảnh thông tin 9'><input type='text' id='accImgInfo10' placeholder='URL ảnh thông tin 10'><input type="text" id="accDesc" placeholder="Mô tả acc">
-        <input type="text" id="accRank" placeholder="Rank">
-        <input type="text" id="accGun" placeholder="Skin súng">
-        <input type="text" id="accSkin" placeholder="Skin nhân vật">
-        <input type="number" id="accPrice" placeholder="Giá xu">
-        <button class="btn" onclick="addAccount()">📤 Thêm ACC</button>
-        <hr style="margin:20px 0;border-color:#7f5af0;">
-        <h3>🪙 Quản lý Xu người dùng</h3>
-        <input type="email" id="targetEmail" placeholder="Email người dùng">
-        <input type="number" id="xuAmount" placeholder="Số xu">
-        <button class="btn" onclick="addXu()">➕ Cộng xu</button>
-        <button class="btn" onclick="subXu()">➖ Trừ xu</button>
-        <p id="admin-status"></p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="tab active" id="accTab">
+<h2>🧑‍🚀 Danh sách Acc</h2>
+<div id="acc-list"></div>
+</div>
+<div class="tab" id="kcTab">
+<h2>💎 Danh sách Gói KC</h2>
+<div id="kc-list"></div>
+</div>
+<div class="tab" id="cartTab">
+<h2>🛒 Giỏ hàng</h2>
+<div id="cart-list"></div>
+</div>
+<div class="tab" id="historyTab">
+<h2>📜 Lịch sử mua hàng</h2>
+<div id="history-list"></div>
+</div>
+<div class="tab" id="xuTab">
+<h2>🪙 Số Xu</h2>
+<p id="xu-display">Đang tải...</p>
+<button class="btn" onclick="topUp()">💸 Nạp Xu</button>
+</div>
+<div class="tab" id="adminTab" style="display:none;">
+<h2>👑 Admin</h2>
+<div class="admin-form">
+<input id="accId" placeholder="ID acc (vd: acc1)" type="text"/>
+<input id="accImg" placeholder="URL ảnh acc" type="text"/>
+<div style="text-align:center;margin:10px 0;">
+<img alt="Xem trước ảnh" id="accPreview" src="" style="display:none;max-width:250px;max-height:250px;border-radius:15px;object-fit:cover;box-shadow:0 0 10px #7f5af0;"/>
+</div>
+<h4>🖼️ Thêm tối đa 10 ảnh thông tin acc</h4><input id="accImgInfo1" placeholder="URL ảnh thông tin 1" type="text"/><input id="accImgInfo2" placeholder="URL ảnh thông tin 2" type="text"/><input id="accImgInfo3" placeholder="URL ảnh thông tin 3" type="text"/><input id="accImgInfo4" placeholder="URL ảnh thông tin 4" type="text"/><input id="accImgInfo5" placeholder="URL ảnh thông tin 5" type="text"/><input id="accImgInfo6" placeholder="URL ảnh thông tin 6" type="text"/><input id="accImgInfo7" placeholder="URL ảnh thông tin 7" type="text"/><input id="accImgInfo8" placeholder="URL ảnh thông tin 8" type="text"/><input id="accImgInfo9" placeholder="URL ảnh thông tin 9" type="text"/><input id="accImgInfo10" placeholder="URL ảnh thông tin 10" type="text"/><input id="accDesc" placeholder="Mô tả acc" type="text"/>
+<input id="accRank" placeholder="Rank" type="text"/>
+<input id="accGun" placeholder="Skin súng" type="text"/>
+<input id="accSkin" placeholder="Skin nhân vật" type="text"/>
+<input id="accPrice" placeholder="Giá xu" type="number"/>
+<button class="btn" onclick="addAccount()">📤 Thêm ACC</button>
+<hr style="margin:20px 0;border-color:#7f5af0;"/>
+<h3>🪙 Quản lý Xu người dùng</h3>
+<input id="targetEmail" placeholder="Email người dùng" type="email"/>
+<input id="xuAmount" placeholder="Số xu" type="number"/>
+<button class="btn" onclick="addXu()">➕ Cộng xu</button>
+<button class="btn" onclick="subXu()">➖ Trừ xu</button>
+<p id="admin-status"></p>
+<hr style="margin:20px 0;border-color:#7f5af0;"/>
+<h3>💎 Quản lý Gói KC</h3>
+<input id="kcId" placeholder="ID gói KC (vd: kc1)" type="text"/>
+<input id="kcImg" placeholder="URL ảnh gói KC" type="text"/>
+<input id="kcPrice" placeholder="Giá xu" type="number"/>
+<button class="btn" onclick="addKC()">📤 Thêm Gói KC</button>
+</div>
+</div>
+</div>
 </div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -213,15 +223,50 @@ window.topUp=()=>{
   window.open('https://www.facebook.com/profile.php?id=61573621708433','_blank');
 };
 
-</script>
 
+
+function loadKC(){
+  onValue(ref(db,"kc"),snap=>{
+    const kcList=document.getElementById('kc-list');
+    kcList.innerHTML="";
+    snap.forEach(c=>{
+      const a=c.val();
+      kcList.innerHTML+=`
+        <div class="card">
+<img src="${a.img}"/>
+<p>💰 Giá: ${a.price} xu</p>
+<button class="btn" onclick="addToCartKC('${c.key}')">🛒 Thêm giỏ hàng</button>
+</div>`;
+    });
+  });
+}
+
+window.addKC=async()=>{
+  const id=document.getElementById('kcId').value.trim();
+  if(!id)return alert("❌ Nhập ID");
+  const kcData={
+    img:document.getElementById('kcImg').value,
+    price:parseInt(document.getElementById('kcPrice').value)
+  };
+  await set(ref(db,"kc/"+id),kcData);
+  alert("✅ Thêm gói KC thành công!");
+  loadKC();
+};
+
+window.addToCartKC=async(id)=>{
+  const kcSnap=await get(ref(db,"kc/"+id));
+  if(!kcSnap.exists())return;
+  await set(ref(db,"cart/"+currentUID+"/kc_"+id),kcSnap.val());
+  alert("✅ Đã thêm gói KC vào giỏ hàng");
+};
+
+</script>
 <!-- Popup xem ảnh thông tin acc -->
 <div id="infoPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
-  <div style="background:#111;padding:20px;border-radius:15px;max-width:90%;max-height:90%;overflow:auto;position:relative;text-align:center;">
-    <button onclick="closeInfo()" style="position:absolute;top:10px;right:15px;background:red;border:none;color:#fff;padding:5px 10px;border-radius:10px;cursor:pointer;">✖</button>
-    <div id="infoImages"></div>
-  </div>
+<div style="background:#111;padding:20px;border-radius:15px;max-width:90%;max-height:90%;overflow:auto;position:relative;text-align:center;">
+<button onclick="closeInfo()" style="position:absolute;top:10px;right:15px;background:red;border:none;color:#fff;padding:5px 10px;border-radius:10px;cursor:pointer;">✖</button>
+<div id="infoImages"></div>
 </div>
-
+</div>
 </body>
 </html>
